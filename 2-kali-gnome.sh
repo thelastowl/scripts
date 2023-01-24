@@ -5,12 +5,6 @@ echo "Setting resolution"
 wget https://github.com/thelastowl/configs/blob/main/monitor.xml -O ~/.config/monitors.xml
 
 echo "Setting theme"
-git clone https://github.com/vinceliuice/Graphite-gtk-theme.git && cd Graphite-gtk-theme
-./install.sh -l -d /usr/share/themes -t all
-cd .. && rm -r Graphite-gtk-theme
-#git clone https://github.com/vinceliuice/Tela-circle-icon-theme && cd Tela-circle-icon-theme 
-#./install.sh -a -c -d /usr/share/icons
-
 #Legacy applications
 gsettings set org.gnome.desktop.interface gtk-theme "Graphite-blue-dark" 
 #shell theme
@@ -34,8 +28,8 @@ dconf write /org/gnome/nautilus/preferences/show-hidden-files true
 #dash settings
 echo "Setting dash settings" 
 gsettings set org.gnome.shell favorite-apps "['com.gexperts.Tilix.desktop', 'brave-browser.desktop', 'org.gnome.Nautilus.desktop', 'sublime_text.desktop']"
-gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
-gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'LEFT'
-gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
-gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'FIXED'
-gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.0
+#gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
+#gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'LEFT'
+#gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
+#gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'FIXED'
+#gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.0
