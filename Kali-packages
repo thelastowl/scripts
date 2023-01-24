@@ -26,7 +26,7 @@ echo "$username ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 #packages
 echo "Installing packages"
-INSTALL_PKGS="nmap metasploit-framework rlwrap netcat-traditional netdiscover john hashcat hydra wpscan sqlmap sublist3r gobuster steghide exiftool unrar htop wget curl git locate gzip whois whatweb openvpn net-tools python3 python2 python3-pip default-jre default-jdk zsh name-that-hash tilix smbclient ffuf remmina"
+INSTALL_PKGS="nmap metasploit-framework rlwrap netcat-traditional netdiscover john hashcat hydra wpscan sqlmap wireshark sublist3r gobuster steghide exiftool unrar htop wget curl git locate gzip whois whatweb openvpn net-tools python3 python2 python3-pip default-jre default-jdk zsh name-that-hash tilix smbclient ffuf remmina nautilus"
 
 for i in $INSTALL_PKGS; do
   sudo apt-get install -y $i
@@ -63,8 +63,8 @@ wget -qO /home/$username"/.config/tilix/schemes/sea-shells.json" https://git.io/
 
 #burp 
 cp -r /mnt/Shared/burp /opt/burp
-echo -e "alias burp=\"java -jar /opt/burp/burploader.jar" >> /home/$username/.zshrc
-echo -e "alias burp=\"java -jar /opt/burp/burploader.jar" >> /root/.zshrc
+echo -e "alias burp=\"java -jar /opt/burp/burploader.jar\"" >> /home/$username/.zshrc
+echo -e "alias burp=\"java -jar /opt/burp/burploader.jar\"" >> /root/.zshrc
 
 #firefox remove
 echo "Removing firefox"
@@ -86,10 +86,19 @@ wget https://github.com/thelastowl/configs/blob/main/monitor.xml -O /home/$usern
 gsettings set org.gnome.desktop.interface gtk-theme "Kali-Dark"
 gsettings set org.gnome.desktop.interface icon-theme "gnome"
 gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3-dark"
+
+#general settings
+echo "Setting general settings" 
 gsettings set org.gnome.desktop.session idle-delay 0
 gsettings set org.gnome.desktop.lockdown disable-lock-screen 'true'
 gsettings set org.gnome.desktop.interface enable-animations false
-gsettings set org.gnome.shell favorite-apps "['com.gexperts.Tilix.desktop', 'brave-browser.desktop', 'org.gnome.Nautilus.desktop', 'sublime_text.desktop']"
 dconf write /org/gnome/desktop/interface/clock-show-date true
 dconf write /org/gnome/desktop/interface/clock-show-weekday true
 dconf write /org/gnome/desktop/interface/clock-show-seconds false
+dconf write /org/gnome/nautilus/preferences/show-hidden-files true
+#dash settings
+echo "Setting dash settings" 
+gsettings set org.gnome.shell favorite-apps "['com.gexperts.Tilix.desktop', 'brave-browser.desktop', 'org.gnome.Nautilus.desktop', 'sublime_text.desktop']"
+gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'LEFT'
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
