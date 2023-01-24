@@ -29,9 +29,13 @@ cp $file /etc/gdm3/daemon.conf.bak
 sed -i "s/^.*AutomaticLoginEnable = .*/AutomaticLoginEnable = true/" "${file}"
 sed -i "s/^.*AutomaticLogin = .*/AutomaticLogin = $username/" "${file}"
 
-#others
-cd /tmp && git clone https://github.com/vinceliuice/Graphite-gtk-theme.git && cd Graphite-gtk-theme
-./install.sh -l -d /usr/share/themes -t all
-cd .. && rm -r Graphite-gtk-theme
-#git clone https://github.com/vinceliuice/Tela-circle-icon-theme && cd Tela-circle-icon-theme 
-#./install.sh -a -c -d /usr/share/icons
+#theme download
+git clone https://github.com/paullinuxthemer/Prof-Gnome.git
+mv Prof-Gnome/gnome-professional-40.1-dark /usr/share/themes/
+rm -r Prof-Gnome
+
+##### theme Graphite
+#cd /tmp && git clone https://github.com/vinceliuice/Graphite-gtk-theme.git && cd Graphite-gtk-theme
+#./install.sh -l -d /usr/share/themes -t all
+#cd .. && rm -r Graphite-gtk-theme
+########
