@@ -6,10 +6,6 @@ if (( $EUID != 0 )); then
     exit
 fi
 
-echo "Upgrading"
-apt-get update && apt-get -y upgrade
-echo "Upgrade Done"
-
 apt-get update
 
 echo "Enter username:"
@@ -24,22 +20,13 @@ install -v -D -m0755 /usr/lib/kali_tweaks/data/mount-shared-folders /usr/local/s
 echo "Opening Shared Folder"
 sudo vmhgfs-fuse .host:/ /mnt/ -o allow_other -o uid=1000
 
-#resolution, gsettings, theme
-echo "Setting theme and resolution"
-wget https://github.com/thelastowl/configs/blob/main/monitor.xml -O /home/$username/.config/monitors.xml
-gsettings set org.gnome.desktop.interface gtk-theme "Kali-Dark"
-gsettings set org.gnome.desktop.interface icon-theme "gnome"
-gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3-dark"
-gsettings set org.gnome.desktop.session idle-delay 0
-gsettings set org.gnome.desktop.lockdown disable-lock-screen 'true'
-
 #sudo nopassword
 echo "Adding to sudoers"
 echo "$username ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 #packages
 echo "Installing packages"
-INSTALL_PKGS="nmap metasploit-framework rlwrap netcat-traditional netdiscover john hashcat hydra wpscan sqlmap sublist3r gobuster steghide exiftool unrar htop wget curl git locate gzip whois whatweb openvpn net-tools python3 python2 python3-pip default-jre default-jdk zsh name-that-hash tilix smbclient ffuf"
+INSTALL_PKGS="nmap metasploit-framework rlwrap netcat-traditional netdiscover john hashcat hydra wpscan sqlmap sublist3r gobuster steghide exiftool unrar htop wget curl git locate gzip whois whatweb openvpn net-tools python3 python2 python3-pip default-jre default-jdk zsh name-that-hash tilix smbclient ffuf remmina"
 
 for i in $INSTALL_PKGS; do
   sudo apt-get install -y $i
@@ -83,7 +70,24 @@ echo -e "alias burp=\"java -jar /opt/burp/burploader.jar" >> /root/.zshrc
 echo "Removing firefox"
 apt-get remove -y firefox-esr
 
+echo "Upgrading system"
+apt-get update && apt-get -y upgrade
+echo "Upgrade Done"
+
 #cleaning
 echo "Cleaning up"
 apt-get -y autoclean
 apt-get -y autoremove 
+
+
+#resolution, theme, gsettings, 
+echo "Setting theme and resolution"
+wget https://github.com/thelastowl/configs/blob/main/monitor.xml -O /home/$username/.config/monitors.xml
+gsettings set org.gnome.desktop.interface gtk-theme "Kali-Dark"
+gsettings set org.gnome.desktop.interface icon-theme "gnome"
+gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3-dark"
+gsettings set org.gnome.desktop.session idle-delay 0
+gsettings set org.gnome.desktop.lockdown disable-lock-screen 'true'
+gsettings set org.gnome.desktop.interface enable-animations false
+gsettings set org.gnome.shell favorite-apps "['com.gexperts.Tilix.desktop', 'brave-browser.desktop', 'org.gnome.Nautilus.desktop', 'sublime_text.desktop']"
+
