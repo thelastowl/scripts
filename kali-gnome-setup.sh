@@ -35,7 +35,6 @@ gsettings set org.gnome.desktop.wm.preferences theme "Graphite-blue-dark"
 #gsettings set org.gnome.desktop.interface cursor-theme 
 #gsettings set org.gnome.desktop.interface icon-theme 
 
-
 #general settings
 echo "Various settings" 
 gsettings set org.gnome.desktop.interface text-scaling-factor 1.3
