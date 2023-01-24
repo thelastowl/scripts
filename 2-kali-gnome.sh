@@ -1,28 +1,13 @@
 #!/bin/bash
 
-#Checking for sudo
-if (( $EUID != 0 )); then
-    echo "Please run as root"
-    exit
-fi
-
-echo "Enter username:"
-read username
-
-apt-get update
-
-#sudo nopassword
-echo "Adding to sudoers"
-echo "$username ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-
 #resolution
 echo "Setting resolution"
-wget https://github.com/thelastowl/configs/blob/main/monitor.xml -O /home/$username/.config/monitors.xml
+wget https://github.com/thelastowl/configs/blob/main/monitor.xml -O ~/.config/monitors.xml
 
 echo "Setting theme"
-apt-get install -y gtk2-engines-murrine sassc gnome-themes-extra
 git clone https://github.com/vinceliuice/Graphite-gtk-theme.git && cd Graphite-gtk-theme
 ./install.sh -l -d /usr/share/themes -t all
+cd .. && rm -r Graphite-gtk-theme
 #git clone https://github.com/vinceliuice/Tela-circle-icon-theme && cd Tela-circle-icon-theme 
 #./install.sh -a -c -d /usr/share/icons
 
@@ -54,12 +39,3 @@ gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'LEFT'
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
 gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'FIXED'
 gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.0
-
-
-#enable autologin
-echo "Enabling autologin"
-file=/etc/gdm3/daemon.conf
-cp $file /etc/gdm3/daemon.conf.bak
-sed -i "s/^.*AutomaticLoginEnable = .*/AutomaticLoginEnable = true/" "${file}"
-sed -i "s/^.*AutomaticLogin = .*/AutomaticLogin = $username/" "${file}"
-
