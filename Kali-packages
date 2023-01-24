@@ -102,3 +102,10 @@ gsettings set org.gnome.shell favorite-apps "['com.gexperts.Tilix.desktop', 'bra
 gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'LEFT'
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
+
+#enable autologin
+echo "Enabling autologin"
+file=/etc/gdm3/daemon.conf
+cp $file /etc/gdm3/daemon.conf.bak
+sed -i "s/^.*AutomaticLoginEnable = .*/AutomaticLoginEnable = true/" "${file}"
+sed -i "s/^.*AutomaticLogin = .*/AutomaticLogin = $username/" "${file}"
