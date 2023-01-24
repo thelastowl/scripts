@@ -24,12 +24,14 @@ install -v -D -m0755 /usr/lib/kali_tweaks/data/mount-shared-folders /usr/local/s
 echo "Opening Shared Folder"
 sudo vmhgfs-fuse .host:/ /mnt/ -o allow_other -o uid=1000
 
-#theme, resolution
+#resolution, gsettings, theme
 echo "Setting theme and resolution"
+wget https://github.com/thelastowl/configs/blob/main/monitor.xml -O /home/$username/.config/monitors.xml
 gsettings set org.gnome.desktop.interface gtk-theme "Kali-Dark"
 gsettings set org.gnome.desktop.interface icon-theme "gnome"
 gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3-dark"
-wget https://github.com/thelastowl/configs/blob/main/monitor.xml -O /home/$username/.config/monitors.xml
+gsettings set org.gnome.desktop.session idle-delay 0
+gsettings set org.gnome.desktop.lockdown disable-lock-screen 'true'
 
 #sudo nopassword
 echo "Adding to sudoers"
