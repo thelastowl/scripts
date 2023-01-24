@@ -1,0 +1,72 @@
+#!/bin/bash
+
+#Checking for sudo
+if (( $EUID != 0 )); then
+    echo "Please run as root"
+    exit
+fi
+
+apt-get update
+
+mkdir -p /opt/wordlists
+
+#cms - wordpress drupal django
+echo "Downloading CMS wordlists"
+mkdir -p /opt/wordlists/cms
+cd /opt/wordlists/cms
+wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/Web-Content/CMS/wordpress.fuzz.txt
+wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/Web-Content/CMS/wp-plugins.fuzz.txt
+wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/Web-Content/CMS/Drupal.txt
+wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/Web-Content/CMS/Django.txt
+
+#directories & filenames
+echo "Downloading directories and files wordlists"
+mkdir -p /opt/wordlists/directories
+cd /opt/wordlists/directories
+wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/Web-Content/combined_directories.txt
+wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/Web-Content/directory-list-2.3-big.txt
+wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/Web-Content/big.txt -O filenames-big.txt
+
+#passwords
+echo "Downloading passwords wordlists"
+mkdir -p /opt/wordlists/passwords
+cd /opt/wordlists/passwords
+wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/xato-net-10-million-passwords-1000000.txt -O xato-1mil.txt
+wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/xato-net-10-million-passwords-100000.txt -O xato-100k.txt
+wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/xato-net-10-million-passwords-1000.txt -O xato-1k.txt
+wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/DNS/subdomains-top1million-5000.txt -O subdomains-5k.txt
+wget https://github.com/IrishMaestro/rockyou/raw/master/rockyou.txt.gz
+gunzip rockyou.txt.gz
+
+#usernames
+mkdir -p /opt/wordlists/usernames
+cd /opt/wordlists/usernames
+wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Usernames/xato-net-10-million-usernames-dup.txt -O xato-usernames-10m-dup.txt
+
+#pspy - UPDATE w/ time
+echo "Downloading pspy"
+mkdir -p /opt/linux_scripts
+cd /opt/linux_scripts
+wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.1/pspy32
+wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.1/pspy64
+chmod 777 pspy32 pspy64
+
+#linpeas, linux-smart-enumeration, linux-exploit-suggester 
+echo "Downloading linpeas, lse, les"
+mkdir -p /opt/linux_scripts
+cd /opt/linux_scripts
+wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh  
+wget https://github.com/diego-treitos/linux-smart-enumeration/releases/latest/download/lse.sh -O lse.sh
+wget https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh -O les.sh
+chmod 777 linpeas.sh lse.sh les.sh
+
+#php-rev, perl-rev 
+echo "Downloading reverse shells"
+mkdir -p /opt/rev-shells
+cd /opt/rev-shells
+wget https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php -O php-rev.php
+
+wget http://pentestmonkey.net/tools/perl-reverse-shell/perl-reverse-shell-1.0.tar.gz 
+tar -xvf perl-reverse-shell-1.0.tar.gz  
+mv /opt/rev-shells/perl-reverse-shell-1.0/perl-reverse-shell.pl /opt/rev-shells/perl-rev.pl
+rm -rf perl-reverse-shell-1.0 perl-reverse-shell-1.0.tar.gz
