@@ -1,7 +1,1 @@
-#Enable autologin
-#Go to /etc/gdm3/daemon.conf and uncomment->
- AutomaticLoginEnable = true
- AutomaticLogin = gunslinger
 
-
-# 
