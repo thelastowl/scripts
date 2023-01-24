@@ -55,7 +55,8 @@ echo -e "if [ \$TILIX_ID ] || [ \$VTE_VERSION ]; then
 fi" >> /root/.zshrc
 ln -s /etc/profile.d/vte-2.91.sh /etc/profile.d/vte.sh
 mkdir -p /home/$username/.config/tilix/schemes
-wget -qO /home/$username"/.config/tilix/schemes/sea-shells.json" https://git.io/v7Qay
+wget -qO /home/$username"/.config/tilix/schemes/flatty.json"  https://git.io/vFkVc
+#wget -qO /home/$username"/.config/tilix/schemes/sea-shells.json" https://git.io/v7Qay
 
 #burp 
 cp -r /mnt/Shared/burp /opt/burp
