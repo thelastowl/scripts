@@ -13,7 +13,7 @@ read username
 
 #vmware tools, kali-tweaks
 echo "Installing VMWare Tools and Kali-tweaks"
-apt-get install -f open-vm-tools-desktop open-vm-tools kali-tweaks python3-newt
+apt-get install -y open-vm-tools-desktop open-vm-tools kali-tweaks python3-newt
 install -v -D -m0755 /usr/lib/kali_tweaks/data/mount-shared-folders /usr/local/sbin/mount-shared-folders
 
 #open shared folder
