@@ -5,14 +5,16 @@ echo "Setting resolution"
 wget https://github.com/thelastowl/configs/blob/main/monitor.xml -O ~/.config/monitors.xml
 
 echo "Setting theme"
+#dark mode
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 #Legacy applications
-gsettings set org.gnome.desktop.interface gtk-theme "Graphite-blue-dark" 
+gsettings set org.gnome.desktop.interface gtk-theme "gnome-professional-40.1-dark" 
 #shell theme
-gsettings set org.gnome.shell.extensions.user-theme name "Graphite-blue-dark" 
+gsettings set org.gnome.shell.extensions.user-theme name "gnome-professional-40.1-dark" 
 #Window manager
-gsettings set org.gnome.desktop.wm.preferences theme "Graphite-blue-dark" 
+gsettings set org.gnome.desktop.wm.preferences theme "default" 
 #gsettings set org.gnome.desktop.interface cursor-theme 
-#gsettings set org.gnome.desktop.interface icon-theme 
+gsettings set org.gnome.desktop.interface icon-theme "Gnome"
 
 #general settings
 echo "Various settings" 
