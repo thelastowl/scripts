@@ -22,7 +22,7 @@ sudo vmhgfs-fuse .host:/ /mnt/ -o allow_other -o uid=1000
 
 #packages
 echo "Installing packages"
-INSTALL_PKGS="nmap metasploit-framework rlwrap netcat-traditional netdiscover john hashcat hydra wpscan sqlmap wireshark sublist3r gobuster steghide exiftool unrar htop wget curl git locate gzip whois whatweb openvpn net-tools python3 python2 python3-pip default-jre default-jdk zsh name-that-hash tilix smbclient ffuf remmina nautilus"
+INSTALL_PKGS="nmap metasploit-framework rlwrap netcat-traditional netdiscover john hashcat hydra wpscan sqlmap wireshark sublist3r gobuster steghide exiftool unrar htop wget curl git locate gzip whois whatweb openvpn net-tools python3 python2 python3-pip default-jre default-jdk zsh name-that-hash tilix smbclient ffuf remmina nautilus make gettext"
 
 for i in $INSTALL_PKGS; do
   sudo apt-get install -y $i
