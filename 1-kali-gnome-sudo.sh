@@ -33,9 +33,3 @@ sed -i "s/^.*AutomaticLogin = .*/AutomaticLogin = $username/" "${file}"
 git clone https://github.com/paullinuxthemer/Prof-Gnome.git
 mv Prof-Gnome/gnome-professional-40.1-dark /usr/share/themes/
 rm -r Prof-Gnome
-
-##### theme Graphite
-#cd /tmp && git clone https://github.com/vinceliuice/Graphite-gtk-theme.git && cd Graphite-gtk-theme
-#./install.sh -l -d /usr/share/themes -t all
-#cd .. && rm -r Graphite-gtk-theme
-########
