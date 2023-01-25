@@ -30,6 +30,11 @@ dconf write /org/gnome/nautilus/preferences/show-hidden-files true
 #dash settings
 echo "Setting dash settings" 
 gsettings set org.gnome.shell favorite-apps "['com.gexperts.Tilix.desktop', 'brave-browser.desktop', 'org.gnome.Nautilus.desktop', 'sublime_text.desktop']"
+wget https://raw.githubusercontent.com/thelastowl/configs/main/dashtopanel -O dtp_settings
+dconf load /org/gnome/shell/extensions/dash-to-panel/ < dtp_settings
+rm dtp_settings
+
+
 #gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
 #gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'LEFT'
 #gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
