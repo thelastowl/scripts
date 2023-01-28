@@ -37,6 +37,7 @@ done
 INS_OTHERS="openvpn tilix nautilus whatweb whois smbclient remmina bleachbit"
 for k in $INS_OTHERS; do
     apt-get install -y $k
+done
 
 #rustscan 
 echo" Installing rustscan" 
