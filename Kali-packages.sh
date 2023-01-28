@@ -23,7 +23,8 @@ sudo vmhgfs-fuse .host:/ /mnt/ -o allow_other -o uid=1000
 #packages
 echo "Installing Packages"
 
-INS_UTIL="unrar htop wget curl git locate gzip net-tools zsh make gettext python3 python2 python3-pip default-jre default-jdk"
+INS_UTIL="unrar htop wget curl git locate gzip net-tools zsh make gettext python3 python2 python3-pip default-jdk default-jre"
+
 for i in $INS_UTIL; do
   apt-get install -y $i
 done
@@ -73,8 +74,11 @@ wget -qO /home/$username"/.config/tilix/schemes/flatty.json"  https://git.io/vFk
 
 #burp 
 cp -r /mnt/Shared/burp /opt/burp
-echo -e "alias burp=\"java -jar /opt/burp/burploader.jar\"" >> /home/$username/.zshrc
-echo -e "alias burp=\"java -jar /opt/burp/burploader.jar\"" >> /root/.zshrc
+echo -e "alias burp=\"java -jar -noverify /opt/burp/burploader.jar\"" >> /home/$username/.zshrc
+echo -e "alias burp=\"java -jar -noverify /opt/burp/burploader.jar\"" >> /root/.zshrc
+
+echo -e "alias thmvpn=\"openvpn /opt/NotSoWise.ovpn\"" >> /home/$username/.zshrc
+echo -e "alias thmvpn=\"openvpn /opt/NotSoWise.ovpn\"" >> /root/.zshrc
 
 #remove packages
 echo "Removing packages (if installed)"
@@ -87,11 +91,12 @@ done
 #   Use vlc separately for each DE, Removing vlc in kde also removes default theme and affects GUI
 #######
 
+alias thmvpn = "openvpn /opt/NotSoWise.ovpn"
 echo "Upgrading system"
 apt-get update && apt-get -y upgrade
 echo "Upgrade Done"
 
 #cleaning
 echo "Cleaning up"
-apt-get -y autoclean
+apt-get -y clean
 apt-get -y autoremove 
