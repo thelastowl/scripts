@@ -6,10 +6,10 @@ if (( $EUID != 0 )); then
     exit
 fi
 
-apt-get update
-
 echo "Enter username:"
 read username
+
+apt-get update
 
 #vmware tools, kali-tweaks
 echo "Installing VMWare Tools and Kali-tweaks"
@@ -21,12 +21,22 @@ echo "Opening Shared Folder"
 sudo vmhgfs-fuse .host:/ /mnt/ -o allow_other -o uid=1000
 
 #packages
-echo "Installing packages"
-INSTALL_PKGS="nmap metasploit-framework rlwrap netcat-traditional netdiscover john hashcat hydra wpscan sqlmap wireshark sublist3r gobuster steghide exiftool unrar htop wget curl git locate gzip whois whatweb openvpn net-tools python3 python2 python3-pip default-jre default-jdk zsh name-that-hash tilix smbclient ffuf remmina nautilus make gettext"
+echo "Installing Packages"
 
-for i in $INSTALL_PKGS; do
-  sudo apt-get install -y $i
+INS_UTIL="unrar htop wget curl git locate gzip net-tools zsh make gettext python3 python2 python3-pip default-jre default-jdk"
+for i in $INS_UTIL; do
+  apt-get install -y $i
 done
+
+INS_TOOLS="nmap metasploit-framework rlwrap netcat-traditional netdiscover john hashcat hydra wpscan sqlmap wireshark sublist3r gobuster steghide exiftool name-that-hash ffuf"
+
+for j in $INS_TOOLS; do
+  apt-get install -y $j
+done
+
+INS_OTHERS="openvpn tilix nautilus whatweb whois smbclient remmina bleachbit"
+for k in $INS_OTHERS; do
+    apt-get install -y $k
 
 #rustscan 
 echo" Installing rustscan" 
@@ -47,6 +57,7 @@ apt-get install -y sublime-text brave-browser
 
 #tilix setup ###-Backup More Later
 echo "Setting up tilix"
+
 echo -e "if [ \$TILIX_ID ] || [ \$VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi" >> /home/$username/.zshrc
@@ -54,7 +65,8 @@ echo -e "if [ \$TILIX_ID ] || [ \$VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi" >> /root/.zshrc
 ln -s /etc/profile.d/vte-2.91.sh /etc/profile.d/vte.sh
-mkdir -p /home/$username/.config/tilix/schemes
+
+mkdir -p /home/$username/.config/tilix/schemes #theme
 wget -qO /home/$username"/.config/tilix/schemes/flatty.json"  https://git.io/vFkVc
 #wget -qO /home/$username"/.config/tilix/schemes/sea-shells.json" https://git.io/v7Qay
 
@@ -63,9 +75,16 @@ cp -r /mnt/Shared/burp /opt/burp
 echo -e "alias burp=\"java -jar /opt/burp/burploader.jar\"" >> /home/$username/.zshrc
 echo -e "alias burp=\"java -jar /opt/burp/burploader.jar\"" >> /root/.zshrc
 
-#firefox remove
-echo "Removing firefox"
-apt-get remove -y firefox-esr
+#remove packages
+echo "Removing packages (if installed)"
+REMOVE_PKGS="firefox-esr"
+
+for l in $REMOVE_PKGS; do 
+    apt-get remove -y $l
+done
+#######
+#   Use vlc separately for each DE, Removing vlc in kde also removes default theme and affects GUI
+#######
 
 echo "Upgrading system"
 apt-get update && apt-get -y upgrade
