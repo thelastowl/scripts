@@ -9,7 +9,9 @@ fi
 echo "Enter username:"
 read username
 
-apt-get update
+echo "Upgrading system"
+apt-get update && apt-get -y upgrade
+echo "Upgrade Done"
 
 #vmware tools, kali-tweaks
 echo "Installing VMWare Tools and Kali-tweaks"
@@ -35,7 +37,7 @@ for j in $INS_TOOLS; do
   apt-get install -y $j
 done
 
-INS_OTHERS="openvpn tilix nautilus whatweb whois smbclient remmina bleachbit"
+INS_OTHERS="openvpn tilix whatweb whois smbclient remmina bleachbit"
 for k in $INS_OTHERS; do
     apt-get install -y $k
 done
@@ -92,11 +94,9 @@ done
 #######
 
 alias thmvpn = "openvpn /opt/NotSoWise.ovpn"
-echo "Upgrading system"
-apt-get update && apt-get -y upgrade
-echo "Upgrade Done"
 
 #cleaning
 echo "Cleaning up"
+apt-get update 
 apt-get -y clean
 apt-get -y autoremove 
