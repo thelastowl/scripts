@@ -37,7 +37,7 @@ for j in $INS_TOOLS; do
   apt-get install -y $j
 done
 
-INS_OTHERS="openvpn tilix whatweb whois smbclient remmina bleachbit"
+INS_OTHERS="openvpn tilix whatweb whois smbclient remmina bleachbit hexedit"
 for k in $INS_OTHERS; do
     apt-get install -y $k
 done
