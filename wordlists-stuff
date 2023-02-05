@@ -70,3 +70,5 @@ wget http://pentestmonkey.net/tools/perl-reverse-shell/perl-reverse-shell-1.0.ta
 tar -xvf perl-reverse-shell-1.0.tar.gz  
 mv /opt/rev-shells/perl-reverse-shell-1.0/perl-reverse-shell.pl /opt/rev-shells/perl-rev.pl
 rm -rf perl-reverse-shell-1.0 perl-reverse-shell-1.0.tar.gz
+
+wget https://raw.githubusercontent.com/thelastowl/reverse-shells/main/node-rev.js 
