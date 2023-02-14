@@ -35,8 +35,8 @@ wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/
 wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/xato-net-10-million-passwords-100000.txt -O xato-100k.txt
 wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/xato-net-10-million-passwords-1000.txt -O xato-1k.txt
 wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/DNS/subdomains-top1million-5000.txt -O subdomains-5k.txt
-wget https://github.com/IrishMaestro/rockyou/raw/master/rockyou.txt.gz
-gunzip rockyou.txt.gz
+wget https://raw.githubusercontent.com/zacheller/rockyou/master/rockyou.txt.tar.gz
+gunzip rockyou.txt.tar.gz
 
 #usernames
 mkdir -p /opt/wordlists/usernames
